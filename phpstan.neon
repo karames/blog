@@ -48,7 +48,7 @@ parameters:
 
         # === ERRORES QUE DEBEMOS ARREGLAR GRADUALMENTE ===
         # TEMPORAL: Tipos faltantes en métodos (esto se puede arreglar paso a paso)
-        # '#Method .* has no return type specified#'
+        - '#Method .* has no return type specified#'
         - '#Method .* has parameter .* with no type specified#'
         - '#Property .* has no type specified#'
 
