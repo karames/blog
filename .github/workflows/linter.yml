@@ -19,7 +19,7 @@ jobs:
       - name: Configurar PHP para Laravel 12
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ">=8.2"
+          php-version: "8.2"
           extensions: mbstring, xml, ctype, json, bcmath, fileinfo, openssl, tokenizer, pdo, curl, zip
           coverage: none
 
