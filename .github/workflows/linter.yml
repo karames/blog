@@ -30,7 +30,7 @@ jobs:
         run: ./vendor/bin/pint --test
 
       - name: Ejecutar PHPStan (análisis estático)
-        run: ./vendor/bin/phpstan analyse --no-interaction --memory-limit=1G
+        run: ./vendor/bin/phpstan analyse --no-interaction --debug --memory-limit=1G
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
