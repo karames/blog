@@ -17,7 +17,7 @@ parameters:
     excludePaths:
         - storage
         - vendor
-        - node_modules
+        - node_modules/*
         - bootstrap/cache
         - database/seeders  # Excluimos seeders hasta mejorar código principal
         - tests  # Excluimos tests por falsos positivos de Laravel testing
