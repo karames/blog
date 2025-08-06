@@ -1,0 +1,47 @@
+name: Linter - Pint, PHPStan & HTMLHint
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  analisis-calidad-codigo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP para Laravel 12
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ">=8.2"
+          extensions: mbstring, xml, ctype, json, bcmath, fileinfo, openssl, tokenizer, pdo, curl, zip
+          coverage: none
+
+      - name: Instalar dependencias de Composer
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Ejecutar Laravel Pint (estilo de código)
+        run: ./vendor/bin/pint --test
+
+      - name: Ejecutar PHPStan (análisis estático)
+        run: ./vendor/bin/phpstan analyse --no-interaction --memory-limit=1G
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Instalar dependencias NPM
+        run: npm install
+
+      - name: Instalar HTMLHint (si no está en package.json)
+        run: npm install -g htmlhint
+
+      - name: Ejecutar HTMLHint sobre todos los archivos HTML
+        run: npx htmlhint "**/*.html"

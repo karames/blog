@@ -1,0 +1,59 @@
+# PHPStan Configuration para Laravel 12
+# Configuración optimizada que balancea detección de errores reales vs. falsos positivos
+
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 6  # Nivel óptimo: detecta errores importantes sin sobrecargar
+    paths:
+        - app
+        - routes
+        - config
+        - database/migrations
+        - database/factories
+        - bootstrap
+        # resources/lang
+    excludePaths:
+        - storage
+        - vendor
+        - node_modules
+        - bootstrap/cache
+        - database/seeders  # Excluimos seeders hasta mejorar código principal
+        - tests  # Excluimos tests por falsos positivos de Laravel testing
+    bootstrapFiles:
+        - vendor/autoload.php
+    ignoreErrors:
+        # === ERRORES CRÍTICOS DE LARAVEL - MANTENER ===
+        # Errores específicos de Eloquent que son falsos positivos conocidos
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder#'
+        - '#Method .* should return .* but returns Illuminate\\Database\\Eloquent\\Builder#'
+
+        # === ERRORES DE TIPADO DE LARAVEL - JUSTIFICADOS ===
+        # Laravel factory generics - requiere factories que no existen aún
+        - '#Class .* uses generic trait .* but does not specify its types#'
+        - '#Type .* in generic type .* in PHPDoc tag @use is not subtype of template type#'
+        - '#PHPDoc tag @use has invalid type .*#'
+
+        # Laravel $fillable - Laravel espera list<string> pero usamos array<int, string>
+        - '#PHPDoc type .* of property .*::\$fillable is not covariant with PHPDoc type list<string>#'
+        - '#Property .*::\$fillable type has no value type specified in iterable type array#'
+
+        # Laravel Collections - collect() tiene problemas de tipos conocidos en Laravel
+        - '#Unable to resolve the template type .* in call to function collect#'
+
+        # Laravel Relations - Eloquent relationships generics son complejos de tipar
+        - '#Method .*::get.*\(\) return type with generic class .* does not specify its types#'
+        - '#Method .* return type with generic class .* does not specify its types#'
+
+        # === ERRORES QUE DEBEMOS ARREGLAR GRADUALMENTE ===
+        # TEMPORAL: Tipos faltantes en métodos (esto se puede arreglar paso a paso)
+        # '#Method .* has no return type specified#'
+        - '#Method .* has parameter .* with no type specified#'
+        - '#Property .* has no type specified#'
+
+        # === ERRORES DE CONFIGURACIÓN ===
+        # Solo para archivos config/ - otros archivos SÍ deben usar config()
+        - "#Called 'env' outside of the config directory which returns null when the config is cached, use 'config'#"
+
+    reportUnmatchedIgnoredErrors: false

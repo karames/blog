@@ -1,33 +1,42 @@
+# Archivos de caché y dependencias
+/.phpunit.cache
 /node_modules
-/public/build
+/vendor
+
+# Salida de build y archivos temporales de Vite/Laravel
+# /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/storage/framework/cache
-/storage/framework/sessions
-/storage/framework/testing
-/storage/framework/views
-/vendor
+
+# Archivos de entorno y configuración sensible
 .env
-.env.*
+.env.backup
+.env.production
+/auth.json
+
+# Archivos de configuración y caché de herramientas
 .phpactor.json
-/tests/.temp
+.phpunit.result.cache
 Homestead.json
 Homestead.yaml
+
+# Logs y errores de npm/yarn
 npm-debug.log
 yarn-error.log
-/auth.json
+/*.log
+
+# Configuración de IDEs y herramientas de desarrollo
 /.fleet
 /.idea
 /.nova
 /.vscode
 /.zed
+
+# Archivos temporales y del sistema operativo
 /.DS_Store
-/.env.backup
-/.env.production
-/.pest.cache
-/.coverage
-/.vscode-test
-/.phpunit.cache
-/.phpunit.result.cache
+Thumbs.db
+
+# Custom
+/.documentation
