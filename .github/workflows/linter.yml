@@ -1,4 +1,4 @@
-name: Linter - Pint, PHPStan & HTMLHint
+name: Linter - Pint, PHPStan, HTMLHint, Prettier & ESLint
 
 on:
   push:
@@ -42,6 +42,9 @@ jobs:
 
       - name: Ejecutar HTMLHint sobre todos los archivos HTML
         run: npx htmlhint "public/**/*.html"
+
+      - name: Ejecutar Prettier sobre todos los archivos CSS
+        run: npx prettier --check "resources/css/**/*.css"
 
       - name: Ejecutar Prettier sobre todos los archivos JS
         run: npx prettier --check "resources/js/**/*.js"

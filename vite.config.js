@@ -1,19 +1,16 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   plugins: [
     laravel({
-      input: [
-        'resources/css/app.css',
-        'resources/js/app.js',
-      ],
+      input: ["resources/css/app.css", "resources/js/app.js"],
       refresh: [
-        'resources/views/**/*.blade.php',
-        'app/Http/Livewire/**',
-        'app/Livewire/**',
-        'app/Volt/**',
+        "resources/views/**/*.blade.php",
+        "app/Http/Livewire/**",
+        "app/Livewire/**",
+        "app/Volt/**",
       ],
     }),
     tailwindcss(),
@@ -21,8 +18,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     cors: true,
     hmr: {
-      host: 'localhost',
-      protocol: 'ws',
+      host: "localhost",
+      protocol: "ws",
     },
     watch: {
       usePolling: true,
