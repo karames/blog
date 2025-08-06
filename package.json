@@ -20,6 +20,8 @@
     "lightningcss-linux-x64-gnu": "^1.29.1"
   },
   "devDependencies": {
-    "htmlhint": "^1.6.3"
+    "eslint": "^9.32.0",
+    "htmlhint": "^1.6.3",
+    "prettier": "^3.6.2"
   }
 }

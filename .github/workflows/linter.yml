@@ -40,8 +40,11 @@ jobs:
       - name: Instalar dependencias NPM
         run: npm install
 
-      - name: Instalar HTMLHint (si no está en package.json)
-        run: npm install -g htmlhint
-
       - name: Ejecutar HTMLHint sobre todos los archivos HTML
-        run: npx htmlhint "**/*.html"
+        run: npx htmlhint "public/**/*.html"
+
+      - name: Ejecutar Prettier sobre todos los archivos JS
+        run: npx prettier --check "resources/js/**/*.js"
+
+      - name: Ejecutar ESLint sobre todos los archivos JS
+        run: npx eslint "resources/js/**/*.js"
