@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.js diff=javascript
+*.json diff=json
+*.md diff=markdown
+*.php diff=php
+*.yml diff=yaml
+*.yaml diff=yaml
+*.xml diff=xml
+
+CHANGELOG.md export-ignore
+README.md export-ignore
+composer.lock export-ignore
+phpunit.xml export-ignore
+.env export-ignore
+.env.* export-ignore
